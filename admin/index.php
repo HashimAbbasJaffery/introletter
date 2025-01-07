@@ -22,8 +22,6 @@ if(isset($_POST['login']))
         if ($data['role'] == 'Admin') {
             header('location:manage_member.php');
         }else if($data['role'] === 'User'){
-            header('location: dashboard.php');
-        } else {
             header('location: find_address.php');
         }
         exit();

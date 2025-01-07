@@ -38,7 +38,7 @@ body {
   background-color:#f6f5f3;
 }
 
-#regForm {
+#regForm, .regForm {
   background-color:#f6f5f3;
   margin: 150px auto;
   border-radius:5px;
@@ -382,7 +382,7 @@ h1{
 <br>
 <br>
 
-<form id="regForm" method="post" action="insert.php">
+<form id="regForm" style="margin-bottom: 0px; padding-bottom: 10px;">
   <!-- Step 2: Profile Information -->
 
     <div class="">
@@ -390,17 +390,28 @@ h1{
             <label for="membership_no">Membership No: <span style="color:red; width:50px;">&#8727;</span></label>
             <input type="text" id="membership_no" class="form-control" placeholder="Enter Membership No" oninput="this.className = ''" name="membership_no" required>
         </p>
-        <p>
-        <label for="members_name">Member's Name: <span style="color:red; width:50px;">&#8727;</span></label>
-        <input type="text" id="members_name" class="form-control" placeholder="Enter Your Name..." oninput="this.className = ''" name="full_name" readonly>
-        </p>
+        <button type="submit" id="seaarch_button" style="width: 100%; margin-right: 0px;">Get Record</button>
     </div>  
 </form>
-<div>
-    
+<div class="alert alert-success d-none mb-3" id="success" style="width: 70%; margin: auto;">Successfully Updated!</div>
+<div class="alert alert-danger d-none mb-3" id="danger" style="width: 70%; margin: auto;">Please fill all fields!</div>
+<div class="regForm d-none" id="display_form" style="background: white; margin: 150px auto; padding: 10px; margin-top: 0px; border: 1px solid black;">
+    <p style="margin-bottom: 2px;">Name: <span id="name">Hashim Abbas</span></p>
+    <p>Phone Number: <span id="phone">8483849</span></p>
+    <input type="text" id="residential_address" placeholder="Residential Address" />
+    <button onclick="updateAddress()" type="submit" class="mt-3" style="width: 100%; margin: 0px;">Update</button>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+
+    const field = document.getElementById("membership_no");
+    const form = document.getElementById("regForm");
+    const name = document.getElementById("name");
+    const phone = document.getElementById("phone");
+    const residential_address = document.getElementById("residential_address");
+    const display = document.getElementById("display_form");
+    const success = document.getElementById("success");
+    const danger = document.getElementById("danger");
 
     function debounce(func, delay) {
         let timer;
@@ -413,16 +424,53 @@ h1{
         };
     }
     const send_request = number => {
+      success.classList.add("d-none");
+      danger.classList.add("d-none");
         axios.get(`find_data.php?member_number=${number}`)
             .then(res => {
-                console.log(res)
+              if(res.data) {
+                display.classList.remove("d-none")
+              } else {
+                display.classList.add("d-none");
+                danger.classList.remove("d-none");
+                danger.textContent = "No Record Found!";
+              }
+              name.textContent = res.data.full_name;
+              residential_address.value = res.data.residential_address;
             })
             .catch(err => {
                 console.log(err)
             })
     }
-    const member_no = document.getElementById("membership_no");
-    member_no.addEventListener("input", debounce(() => send_request(member_no.value), 500));
+
+    const updateAddress = () => {
+      axios.post("update_address.php", {
+        membership_id: field.value,
+        address: residential_address.value
+      }, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+        .then(res => {
+          if(res.data) {
+            success.classList.remove("d-none");
+            danger.classList.add("d-none");
+          } else {
+            success.classList.add("d-none");
+            danger.textContent = "Please fill all fields!";
+            danger.classList.remove("d-none");
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      send_request(field.value)
+    });
 </script>
 
 </body>
