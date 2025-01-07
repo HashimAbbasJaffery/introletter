@@ -1,0 +1,18 @@
+[16-Aug-2024 12:48:11 UTC] PHP Warning:  Undefined array key "full_name" in /home/gwadtiil/ilrf.gwadargymkhana.com.pk/insert.php on line 18
+[16-Aug-2024 12:48:11 UTC] PHP Warning:  Undefined array key "membership_no" in /home/gwadtiil/ilrf.gwadargymkhana.com.pk/insert.php on line 19
+[16-Aug-2024 12:48:11 UTC] PHP Warning:  Undefined array key "spouse" in /home/gwadtiil/ilrf.gwadargymkhana.com.pk/insert.php on line 20
+[16-Aug-2024 12:48:11 UTC] PHP Warning:  Undefined array key "children" in /home/gwadtiil/ilrf.gwadargymkhana.com.pk/insert.php on line 21
+[16-Aug-2024 12:48:11 UTC] PHP Warning:  Undefined array key "res" in /home/gwadtiil/ilrf.gwadargymkhana.com.pk/insert.php on line 22
+[16-Aug-2024 12:48:11 UTC] PHP Warning:  Undefined array key "duration" in /home/gwadtiil/ilrf.gwadargymkhana.com.pk/insert.php on line 23
+[16-Aug-2024 12:48:11 UTC] PHP Warning:  Undefined array key "fee" in /home/gwadtiil/ilrf.gwadargymkhana.com.pk/insert.php on line 24
+[16-Aug-2024 12:48:11 UTC] PHP Warning:  Undefined array key "issue" in /home/gwadtiil/ilrf.gwadargymkhana.com.pk/insert.php on line 25
+[28-Aug-2024 09:37:51 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Orient B√ºy√ºk Kul√ºp in IÙ\008F∞Çanbul, Turkey','1 Month' , '1000' ,'...' at line 2 in /home/gwadtiil/ilrf.gwadargymkhana.com.pk/insert.php:38
+Stack trace:
+#0 /home/gwadtiil/ilrf.gwadargymkhana.com.pk/insert.php(38): mysqli_query()
+#1 {main}
+  thrown in /home/gwadtiil/ilrf.gwadargymkhana.com.pk/insert.php on line 38
+[10-Sep-2024 16:14:10 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Orient Grand Club','1 Month' , '1000' ,'2024-09-14')' at line 2 in /home/gwadtiil/ilrf.gwadargymkhana.com.pk/insert.php:38
+Stack trace:
+#0 /home/gwadtiil/ilrf.gwadargymkhana.com.pk/insert.php(38): mysqli_query()
+#1 {main}
+  thrown in /home/gwadtiil/ilrf.gwadargymkhana.com.pk/insert.php on line 38
